@@ -1,17 +1,24 @@
 $(document).ready(function(){
-  $('body').css('background-color', 'red');
+  $('#depositChecking').on('click', depositChecking);
+  $('#withdrawChecking').on('click', withdrawChecking);
+  $('#depositSavings').on('click', depositSavings);
+  $('#withdrawSavings').on('click', withdrawSavings);
 })
 
     //Checking account deposit function
 
       //On click of the depositChecking button
-
+function depositChecking(){
+  console.log('depositChecking()');
+}
         //Get value from the amountChecking input field
 
         //Take that value and add it to the existing value in the checkingBalance div
 
     //Checking account withdrawl funtion
-
+function withdrawChecking(){
+  console.log('withdrawChecking()');
+}
       //On click of the withdrawChecking button
 
         //Get value from the amountChecking input field
@@ -24,7 +31,9 @@ $(document).ready(function(){
     //Savings account deposit function
 
       //On click of the depositSavings button
-
+function depositSavings(){
+  console.log('depositSavings()');
+}
         //Get value from the amountSavings input field
 
         //Take that value and add it to the existing value in the savingsBalance div
@@ -32,7 +41,9 @@ $(document).ready(function(){
     //Savings account withdraw funtion
 
       //On click of the withdrawl button
-
+function withdrawSavings(){
+  console.log('withdrawSavings()');
+}
         //Get value from the amountSavings input field
 
          //If that value is greater than the value in the account ignore that action
