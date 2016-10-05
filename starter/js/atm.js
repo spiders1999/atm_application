@@ -5,52 +5,51 @@ $(document).ready(function(){
   $('#withdrawSavings').on('click', withdrawSavings);
 })
 
+function withdraw(source, accountvalue){
+  var account = $(source).val();
+  var balance = $(accountvalue).text();
+  balance = parseInt(balance.replace("$", ""));
+  if (balance >= account){
+    var balance = balance - parseInt(account);
+    if (balance === 0){
+      $(accountvalue).prop('class', 'balance zero');
+    }
+    balance = "$" + (balance);
+    $(source).val("");
+    $(accountvalue).text(balance);
+  }
+}
+
+function deposit(source, accountvalue){
+  var account = $(source).val();
+  var balance = $(accountvalue).text();
+  balance = parseInt(balance.replace("$", ""));
+  if (account !== ""){
+    balance = (parseInt(account) + balance);
+    if (balance > 0){
+      $(accountvalue).prop('class', 'balance');
+    }
+    balance = "$" + (balance);
+    $(source).val("");
+    $(accountvalue).text(balance);
+  }
+
+}
+
 function depositChecking(){
-  var checking = $('#amountChecking').val();
-  var balance = $('#checkingBalance').text();
-  balance = parseInt(balance.replace("$", ""));
-  if (checking !== ""){
-    balance = "$" + (parseInt(checking) + balance);
-    $('#amountChecking').val("");
-    $('#checkingBalance').text(balance);
-  }
+  deposit('#amountChecking', '#checkingBalance');
 }
 
-    //Checking account withdrawl funtion
-
-      //On click of the withdrawChecking button
 function withdrawChecking(){
-  var checking = $('#amountChecking').val();
-  var balance = $('#checkingBalance').text();
-  balance = parseInt(balance.replace("$", ""));
-  if (balance >= checking){
-    balance = "$" + (balance - parseInt(checking));
-    $('#amountChecking').val("");
-    $('#checkingBalance').text(balance);
-  }
+  withdraw('#amountChecking', '#checkingBalance');
 }
-        //Get value from the amountChecking input field
 
-        // If that value is greater than the value in the account ignore that action
-        // In other words if this would put the account into a negative balance do not allow it
-
-        //Else subtract that value from the current amount in the checking account
-
-    //Savings account deposit function
-
-      //On click of the depositSavings button
 function depositSavings(){
-  console.log('depositSavings()');
+  deposit('#amountSavings', '#savingsBalance');
 }
-        //Get value from the amountSavings input field
 
-        //Take that value and add it to the existing value in the savingsBalance div
-
-    //Savings account withdraw funtion
-
-      //On click of the withdrawl button
 function withdrawSavings(){
-  console.log('withdrawSavings()');
+  withdraw('#amountSavings', '#savingsBalance');
 }
         //Get value from the amountSavings input field
 
