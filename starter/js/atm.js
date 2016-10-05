@@ -5,18 +5,28 @@ $(document).ready(function(){
   $('#withdrawSavings').on('click', withdrawSavings);
 })
 
-function withdraw(source, accountvalue){
+function withdraw(source, accountvalue, overflowvalue){
   var account = $(source).val();
   var balance = $(accountvalue).text();
+  var overflowbalance = $(overflowvalue).text();
   balance = parseInt(balance.replace("$", ""));
+  overflowbalance = parseInt(overflowbalance.replace("$", ""));
   if (balance >= account){
-    var balance = balance - parseInt(account);
+    balance = balance - parseInt(account);
     if (balance === 0){
       $(accountvalue).prop('class', 'balance zero');
     }
     balance = "$" + (balance);
     $(source).val("");
     $(accountvalue).text(balance);
+  } else if ((balance + overflowbalance) >= account){
+    overflowbalancebalance = (overflowbalance + balance) - parseInt(account);
+    $(accountvalue).prop('class', 'balance zero');
+    balance = '$0';
+    overflowbalancebalance = "$" + (overflowbalancebalance);
+    $(accountvalue).text(balance);
+    $(overflowvalue).text(overflowbalancebalance);
+    $(source).val("");
   }
 }
 
@@ -41,7 +51,7 @@ function depositChecking(){
 }
 
 function withdrawChecking(){
-  withdraw('#amountChecking', '#checkingBalance');
+  withdraw('#amountChecking', '#checkingBalance', '#savingsBalance');
 }
 
 function depositSavings(){
@@ -49,7 +59,7 @@ function depositSavings(){
 }
 
 function withdrawSavings(){
-  withdraw('#amountSavings', '#savingsBalance');
+  withdraw('#amountSavings', '#savingsBalance', '#checkingBalance');
 }
         //Get value from the amountSavings input field
 
