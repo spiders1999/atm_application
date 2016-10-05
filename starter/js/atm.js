@@ -5,22 +5,30 @@ $(document).ready(function(){
   $('#withdrawSavings').on('click', withdrawSavings);
 })
 
-    //Checking account deposit function
-
-      //On click of the depositChecking button
 function depositChecking(){
-  console.log('depositChecking()');
+  var checking = $('#amountChecking').val();
+  var balance = $('#checkingBalance').text();
+  balance = parseInt(balance.replace("$", ""));
+  if (checking !== ""){
+    balance = "$" + (parseInt(checking) + balance);
+    $('#amountChecking').val("");
+    $('#checkingBalance').text(balance);
+  }
 }
-        //Get value from the amountChecking input field
-
-        //Take that value and add it to the existing value in the checkingBalance div
 
     //Checking account withdrawl funtion
-function withdrawChecking(){
-  console.log('withdrawChecking()');
-}
-      //On click of the withdrawChecking button
 
+      //On click of the withdrawChecking button
+function withdrawChecking(){
+  var checking = $('#amountChecking').val();
+  var balance = $('#checkingBalance').text();
+  balance = parseInt(balance.replace("$", ""));
+  if (balance >= checking){
+    balance = "$" + (balance - parseInt(checking));
+    $('#amountChecking').val("");
+    $('#checkingBalance').text(balance);
+  }
+}
         //Get value from the amountChecking input field
 
         // If that value is greater than the value in the account ignore that action
